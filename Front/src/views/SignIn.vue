@@ -21,16 +21,17 @@
 
                   <h3 class="font-weight-bolder text-info text-gradient">TurnosExpress</h3>
                   <p class="mb-0">Introduzca sus credenciales para ingresar</p>
-                  
+
                   <div class="card-body mt-4">
                     <form role="form" class="text-start">
                       <label>Email</label>
-                      <vsud-input type="email" placeholder="Email" name="email" v-model="email"/>
+                      <!-- <vsud-input type="email" placeholder="Email" name="email" v-model="email" /> -->
+                      <input type="text" class="form-control" v-model="email" placeholder="email">
                       <label>Contraseña</label>
-                      <vsud-input type="password" placeholder="Contraseña" name="password" v-model="password"/>
-                      <!-- <vsud-switch id="rememberMe" checked>Remember me</vsud-switch> -->
+                      <input type="password" class="form-control" v-model="password" placeholder="password">
                       <div class="text-center">
-                        <vsud-button class="my-4 mb-3" variant="gradient" color="info" full-width @click.prevent="loginUser">Ingresar</vsud-button>
+                        <vsud-button class="my-4 mb-3" variant="gradient" color="info" full-width
+                          @click.prevent="loginUser">Ingresar</vsud-button>
                       </div>
                     </form>
                   </div>
@@ -56,7 +57,6 @@
       </div>
     </section>
   </main>
-  <app-footer />
 </template>
 
 <script setup>
@@ -69,20 +69,22 @@ import bgImg from "@/assets/img/curved-images/curved9.jpg"
 import { ref, onMounted } from "vue";
 import useAuth from "../store/AuthStore";
 import $store from '../store/index'
+import { useRouter } from "vue-router";
 
 
 const body = document.getElementsByTagName("body")[0];
 const store = useAuth()
+const router = useRouter()
 
 const email = ref('')
 const password = ref('')
 
 const loginUser = async () => {
   const response = await store.login(email.value, password.value)
-  if(response.status){
-    alert(response.message)
-  }else{
-    alert("ERROR: "+response.message
+  if (response.status) {
+    router.push({ name: 'Dashboard'})
+  } else {
+    alert("ERROR: " + response.message
     )
   }
 }
@@ -104,7 +106,7 @@ const loginUser = async () => {
 
 <style scoped>
 .card .card-body {
-    font-family: "Open Sans";
-    padding: 0;
+  font-family: "Open Sans";
+  padding: 0;
 }
 </style>

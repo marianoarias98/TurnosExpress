@@ -20,7 +20,7 @@
             <router-link :to="{ name: 'Sign In' }" class="px-0 nav-link font-weight-bold"
               :class="textWhite ? textWhite : 'text-body'">
               <span v-if="$store.state.isRTL" class="d-sm-inline d-none">يسجل دخول</span>
-              <span v-else class="d-sm-inline d-none">Salir</span>
+              <span v-else class="d-sm-inline d-none" @click="closeSession()">Salir</span>
             </router-link>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -139,6 +139,8 @@
 <script>
 import Breadcrumbs from "../Breadcrumbs.vue";
 import { mapMutations, mapActions } from "vuex";
+import useAuth from "../../store/AuthStore";
+import { useRouter } from "vue-router";
 
 export default {
   name: "NavbarComponent",
@@ -159,6 +161,8 @@ export default {
   data() {
     return {
       showMenu: false,
+      token: useAuth(),
+      router: useRouter()
     };
   },
   computed: {
@@ -190,6 +194,9 @@ export default {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
     },
+    closeSession() {
+      this.token.token = null
+    }
   },
 };
 </script>

@@ -1,23 +1,23 @@
 <template>
-  <!-- <sidenav
-    v-if="$store.state.showSidenav"
+  <sidenav
+    v-if="token != null"
     :custom_class="$store.state.mcolor"
     :class="[
       $store.state.isTransparent,
       $store.state.isRTL ? 'fixed-end' : 'fixed-start',
     ]"
-  /> -->
+  />
   <main
     class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
     :style="$store.state.isRTL ? 'overflow-x: hidden' : ''"
   >
     <!-- nav -->
-    <!-- <navbar
-      v-if="$store.state.showNavbar"
+    <navbar
+      v-if="token != null"
       :class="[navClasses]"
       :text-white="$store.state.isAbsolute ? 'text-white opacity-8' : ''"
       :min-nav="navbarMinimize"
-    /> -->
+    />
     <router-view />
     <app-footer v-show="$store.state.showFooter" />
     <!-- <configurator
@@ -35,6 +35,7 @@ import Configurator from "@/examples/Configurator.vue";
 import Navbar from "@/examples/Navbars/Navbar.vue";
 import AppFooter from "@/examples/Footer.vue";
 import { mapMutations } from "vuex";
+import useAuth from "./store/AuthStore";
 export default {
   name: "App",
   components: {
@@ -61,5 +62,10 @@ export default {
   methods: {
     ...mapMutations(["toggleConfigurator", "navbarMinimize"]),
   },
+  data: function(){
+    return{
+      token: useAuth().token
+    }
+  }
 };
 </script>

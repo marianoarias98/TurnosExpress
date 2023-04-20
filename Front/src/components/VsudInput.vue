@@ -10,9 +10,10 @@
         class="form-control"
         :class="getClasses(size, valid)"
         :name="name"
-        :value="value"
+        :value="modelValue"
         :placeholder="placeholder"
         :isRequired="isRequired"
+        @input="updateValue"
       />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
@@ -50,7 +51,7 @@ export default {
       type: String,
       default: ""
     },
-    value: {
+    modelValue: {
       type: String,
       default: ""
     },

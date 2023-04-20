@@ -32,7 +32,11 @@ const useAuth = defineStore('authStore', {
       }
 
       return response
-    }
+    },
+  },
+  persist:{
+    storage: sessionStorage,
+    path: ['token']
   }
   })
 
