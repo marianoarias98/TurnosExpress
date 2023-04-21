@@ -2,11 +2,6 @@
   <div class="container top-0 position-sticky z-index-sticky">
     <div class="row">
       <div class="col-12">
-        <!-- <navbar
-          is-blur="blur blur-rounded my-3 py-2 start-0 end-0 mx-4 shadow"
-          btn-background="bg-gradient-success"
-          :dark-mode="true"
-        /> -->
       </div>
     </div>
   </div>
@@ -20,15 +15,14 @@
                 <div class="pb-0 card-header text-start">
 
                   <h3 class="font-weight-bolder text-info text-gradient">TurnosExpress</h3>
-                  <p class="mb-0">Introduzca sus credenciales para ingresar</p>
+                  <p class="mb-0">Introduzca sus credenciales</p>
 
-                  <div class="card-body mt-4">
+                  <div class="card-body mt-3">
                     <form role="form" class="text-start">
                       <label>Email</label>
-                      <!-- <vsud-input type="email" placeholder="Email" name="email" v-model="email" /> -->
-                      <input type="text" class="form-control" v-model="email" placeholder="email">
-                      <label>Contraseña</label>
-                      <input type="password" class="form-control" v-model="password" placeholder="password">
+                      <input type="text" class="form-control" v-model="email" placeholder="Email">
+                      <label class="mt-3">Contraseña</label>
+                      <input type="password" class="form-control" v-model="password" placeholder="Contraseña">
                       <div class="text-center">
                         <vsud-button class="my-4 mb-3" variant="gradient" color="info" full-width
                           @click.prevent="loginUser">Ingresar</vsud-button>
@@ -38,7 +32,7 @@
                   <div class="px-1 pt-0 text-center card-footer px-lg-2">
                     <p class="mx-auto mb-4 text-sm">
                       No estás registrado/a?
-                      <a href="javascript:;" class="text-info text-gradient font-weight-bold">Registrate</a>
+                      <a href="javascript:;" class="text-info text-gradient font-weight-bold"><router-link to="/sign-up">Registrate</router-link></a>
                     </p>
                   </div>
                 </div>

@@ -95,6 +95,8 @@ router.beforeEach((to, from, next)=>{
   const auth = token.token != null
   const needAuth = to.meta.requireAuth
 
+  console.log(token.token)
+
   if(needAuth && !auth){
     next('/sign-in')
     alert('Unauthorized')
